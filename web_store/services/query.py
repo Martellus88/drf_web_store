@@ -34,6 +34,10 @@ def create_wallet(**fields):
     Wallet.objects.create(**fields)
 
 
+def get_user_wallet(user_instance):
+    return get_object_or_404(Wallet, user=user_instance)
+
+
 def filter_product(**fields):
     return Product.objects.filter(**fields)
 
