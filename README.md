@@ -34,7 +34,7 @@ Web store written in DRF with the option to pay with bitcoin.
     Change the DOCKER variable in the .env file to True
     Set your database settings in the .env.db
     
-    --- Create and run container --    
+    --- Build and run --    
 
     docker-compose build
     docker-compose up -d
