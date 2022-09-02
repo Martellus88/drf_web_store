@@ -1,0 +1,47 @@
+services:
+  web:
+    build: ./web_store/
+    command: gunicorn web_store.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static:/usr/src/app/static/
+      - media:/usr/src/app/media/
+    expose:
+      - 8000
+    env_file:
+      - ./web_store/.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./web_store/.env.db
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/usr/src/app/static/
+      - media:/usr/src/app/media/
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+  redis:
+    image: redis:alpine
+
+  celery:
+    build: ./web_store/
+    command: celery -A web_store worker -l info
+    volumes:
+      - ./web_store/:/usr/src/app/
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres_data:
+  static:
+  media:

@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': 'db' if os.environ.get("DOCKER") == 'True' else 'localhost',
         'PORT': '5432',
     }
 }
@@ -158,10 +158,11 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # Celery and Redis
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = '6379'
-CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
-CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_URL = 'redis://redis:6379' if os.environ.get('DOCKER') == 'True' \
+    else 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379' if os.environ.get('DOCKER') == 'True' \
+    else 'redis://127.0.0.1:6379/0'
+
 CELERY_BROKER_TRANSPORT_OPTION = {'visibility_timeout': 3600}
 CELERY_ACCEPT_CONTEXT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
