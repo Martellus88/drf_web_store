@@ -48,4 +48,6 @@ Web store written in DRF with the option to pay with bitcoin.
     --------------------------------------------------------------
     The application is running on port 80
 
+___
 
+### Swagger API documentation at /swagger/
