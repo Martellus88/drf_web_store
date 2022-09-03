@@ -27,7 +27,7 @@ Web store written in DRF with the option to pay with bitcoin.
 * To send mail to the console, set in the **settings**: EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 * By default, the **Testnet** is used for bitcoin payments. To replace, change the **TYPE_WALLET** settings to **Key**
 
-## Running with docker (django, gunicorn, nginx, celery, redis):
+## Running with docker (django, gunicorn, nginx, postgresql, celery, redis):
 
     --- Environment variables ---    
 
