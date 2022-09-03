@@ -152,7 +152,14 @@ REST_FRAMEWORK = {
 
 # Swagger
 SWAGGER_SETTINGS = {
-    'USE_SESSION_AUTH': False
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'DRF Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
 }
 
 # Mail
