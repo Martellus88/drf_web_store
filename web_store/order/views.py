@@ -14,7 +14,7 @@ class OrderAPIView(mixins.RetrieveModelMixin, mixins.ListModelMixin,
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        return filter_order(customer=self.request.user)
+        return filter_order(customer=self.request.user.id)
 
     def perform_create(self, serializer):
         order = serializer.save()

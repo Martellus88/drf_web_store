@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'drf_yasg',
 
     'product.apps.ProductConfig',
     'cart.apps.CartConfig',
@@ -147,6 +148,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
+}
+
+# Swagger
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False
 }
 
 # Mail
