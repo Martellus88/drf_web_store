@@ -34,9 +34,8 @@ Web store written in DRF with the option to pay with bitcoin.
     Change the DOCKER variable in the .env file to True
     Set your database settings in the .env.db
     
-    --- Build and run --    
+    --- Run --    
 
-    docker-compose build
     docker-compose up -d
     docker-compose exec web python manage.py migrate
     docker-compose exec web python manage.py collectstatic
